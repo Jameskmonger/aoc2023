@@ -122,12 +122,14 @@ function parseGrid(input: string[]) {
                 continue;
             }
 
+            // if the last cell in the row was also a part number,
+            // combine them together e.g. `1` and `3` becomes `13`
             if (lastCellWasNumber) {
                 lastPartNumber!.value = parseInt(`${lastPartNumber!.value}${parsed}`, 10);
                 outputGrid[y][x] = lastPartNumber!;
                 continue;
             }
-
+            
             lastCellWasNumber = true;
             lastPartNumber = {
                 type: "part-number",
